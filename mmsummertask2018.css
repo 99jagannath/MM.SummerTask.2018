@@ -143,3 +143,8 @@ border-left: 0px;
 {
 align-items: left;
 }
+.postslider
+{
+  height: 100px;
+  width: 200px;
+}
