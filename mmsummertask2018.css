@@ -15,7 +15,7 @@ margin-right: auto;
     {
       
       margin-bottom: 0;
-      background:transparent;
+      /*background:transparent;*/
       border:0;
       font-size: 14px;
       letter-spacing: 0.5px;
@@ -26,7 +26,7 @@ margin-right: auto;
     }
     .nanbar li a,  .navbar .navbar-brand
     {
-      background:transparent;
+      /*background:transparent;*/
       padding: 7px;
     }
     .nanbar-nav li a:hover
@@ -137,6 +137,8 @@ border-left: 0px;
 {
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   box-shadow: 2px 2px 2px 2px;
 }
 .searchi
@@ -147,4 +149,113 @@ align-items: left;
 {
   height: 100px;
   width: 200px;
+}
+
+   .container
+    {
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 40%;
+      max-width: 40%;
+      background-color:transparent;
+  
+      text-align: center;
+      height: 330px;
+    }
+    .form
+    {
+      max-width: 300px;
+      padding: 10px 10px 10px 10px;
+      margin: 10px 10px 10px 150px;
+      background-color: grey;
+      text-align: left;
+
+    }
+    .button
+    {
+     background-color:transparent;
+     padding: 1cm 2cm;
+     border :0;
+    }
+   /* .button:hover
+    {
+      background-color: blue;
+    }*/
+    .modal
+    {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      overflow: auto;
+      height:100%;
+      width:100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+.closeBtn
+{
+  color: red;
+  float: right;
+  font-size: 30px;
+}
+.closeBtn:hover,.closeBtn:focus
+{
+  color: #000;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+ .rcontainer
+    {
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 40%;
+      max-width: 40%;
+      background-color:transparent;
+      text-align: center;
+      height: 330px;
+    }
+    .rform
+    {
+      max-width: 300px;
+      padding: 10px 10px 10px 10px;
+      margin: 10px 10px 10px 150px;
+      background-color: grey;
+      text-align: left;
+
+    }
+    .rbutton
+    {
+     background-color:transparent;
+     padding: 1cm 2cm;
+     border :0;
+    }
+   /* .button:hover
+    {
+      background-color: blue;
+    }*/
+    .rmodal
+    {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      overflow: auto;
+      height:100%;
+      width:100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+.rcloseBtn
+{
+  color: red;
+  float: right;
+  font-size: 30px;
+}
+.rcloseBtn:hover,.rcloseBtn:focus
+{
+  color: #000;
+  text-decoration: none;
+  cursor:pointer;
 }
