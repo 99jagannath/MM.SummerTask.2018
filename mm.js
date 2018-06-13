@@ -36,9 +36,14 @@ function rcloseModal()
 	rmodal.style.display='none';
 }
 
+
 function rclickoutside(e)
 {
 	if(e.target==rmodal){
       rmodal.style.display='none';
 	}
 }
+$(document).ready(function(){
+
+	$('header').show('slow');
+});
