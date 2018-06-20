@@ -119,7 +119,7 @@
   <?php endif;?>
     	 <span class="rcloseBtn" id="rcloseBtn">&times;</span>
        <?php echo form_open('Login/resistration')?>
-	      <label>Username</label><br>
+	      <label>UserName</label><br>
          <input type="text" name="username" placeholder="Username" required><br>
 		 <label>Password</label><br>
          <input type="password" name="password" placeholder="Password" required><br>
