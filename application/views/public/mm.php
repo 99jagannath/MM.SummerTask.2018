@@ -53,7 +53,7 @@
 
 <body>
 	
-<div class="main">
+<div class="main" style="height: auto; width: auto;">
 <header class="row" id="header">
 	<div class="col-md-6">
 		
@@ -85,7 +85,7 @@
         
         <br>
          <br>
-         <input type="submit" value="signin">
+         <input type="submit" value="login">
      <?php echo form_close();?>
          
     </div>
@@ -131,7 +131,7 @@
          <input type="file" name="image" placeholder="Image" required><br>
          <br>
          <input type="reset" value="reset" name="reset">
-         <input type="submit" value="signup" name="submit">
+         <input type="submit" value="Resister" name="submit">
     <?php form_close();?>
          
     </div>
@@ -142,25 +142,7 @@
 
 
 	</div>
-	<div id="contactModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">confirm delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Do you want to delete this record</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="btn-delete"  class="btn btn-primary">Delete</button>
-        <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 </div>
 <div class="col-md-6">
 	<nav class="navbar navbar-default navbar-fixed-right" style="background-color: transparent;border-style: none;">
@@ -304,7 +286,7 @@
  </nav>  
 </div>
 </nav>
- <div class="mainbody">
+ <div class="mainbody" style="height: auto; width: auto;">
  	<div class="row upperpart">
  		<div class="posts col-md-9 col-sm-12">
  			<div class="row"><!--feature post-->
@@ -323,7 +305,7 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="max-width:  570px";>
+    <div class="carousel-inner" style="max-width:  571px";>
       <?php 
        $j=1;
        foreach ($carosel as $item ): 
@@ -518,18 +500,16 @@
  			</div>
  			<br>
  			<div id="poll-widget" class="col-md-12 col-sm-6 poll-widget" data-pollid="" style="position: relative; min-height: 200px;">
- 						<?php 
-    if($feedback=$this->session->flashdata('poll')) :
-       
-     ?>
+ 						
+    
    <div class="row">
      <div class="col-lg-6 col-lg-offset-3">
-       <div class="alert alert-info ?>">
-            <?=$feedback ?>            
+       <div class="alert alert-info" id="poll-result" style="display: none;">
+                       
        </div>
      </div>
    </div>
-  <?php endif;?>
+ 
  			<br>
  				<?php 
                   $no1=count($option1);
@@ -575,7 +555,7 @@
            <div class="question">
            	<h4 style="text-align: center;">poll question</h4>
            	<p><strong>How safe is the institute to protect itself from various unforseen hazards(fire, construction etc)?</strong></p>
-	          <?php echo form_open('login/poll') ?>
+	          <div>
 	         <?php  $ip=$_SERVER['REMOTE_ADDR']?:($_SERVER['HTTP_X_FORWARDED_FOR']?:$_SERVER['HTTP_CLIENT_IP']);
 	           echo form_hidden('ip',$ip); ?>
 	         <?php $radio1=array(
@@ -601,9 +581,9 @@
 	                 	 <br>
               <?php echo form_reset(['name'=>'submit','value'=>'reset','class'=>'btn btn-default'])  ?>
 
-              <?php echo form_submit(['name'=>'submit','value'=>'submit','class'=>'btn btn-primary'])  ?>
+              <button name='submit' value='submit' id='poll'  class='btn btn-primary'>submit</button>
               
-	          <?php echo form_close(); ?>
+	          </div>
 	          <br>
               <button class="btn  btn-primary" id="result">view result</button>
            </div>
@@ -679,23 +659,26 @@
  			</aside>
  		
  	</div><!--end of middlepart-->
- 	
+ 	<div class="row" style="width: 1300px;height: 330px; margin-left: 20px;" >
+ 		
+ 	</div>	
+ 	<div class="row" style="width: 1300px;height: 330px; ;margin-left: 20px;" >
+ 		
+
+ 	<div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="<?= base_url('login/question');  ?>" class="btn btn-lg btn-success pull-right" style="float: right;">Ask a Question</a></div>
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <a href="<?= base_url('login/forum');  ?>" class="btn btn-lg btn-success pull-right" style="float:left;margin-left: 0px">forum</a>	</div>	
+ 
  </div>
  <!--end of main body-->
 	<!--END FOOTER	</div>-->
-
 	<!--END CONTAINER-->
 	
 		
 	
 <!--end of footer-->
 </div><!--end of main-->
-<div class="row">
- 	
- 		
-<center><a href="<?= base_url('login/question');  ?>" class="btn btn-lg btn-success pull-right" style="float: right;">Ask a Question</a></center>
- 		
- 	</div>
+
  	<script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

@@ -26,8 +26,8 @@ var rmodalBtn=document.getElementById('rmodalbtn');
 var rcloseBtn=document.getElementById('rcloseBtn');
 var contact=document.getElementById('contact');
 var contactModal=document.getElementById('contactModal');
-rmodalBtn.addEventListener('click',ropenModal);
-contact.addEventListener('click',ropenContact);
+//rmodalBtn.addEventListener('click',ropenModal);
+//contact.addEventListener('click',ropenContact);
 rcloseBtn.addEventListener('click',rcloseModal);
 window.addEventListener('click',rclickoutside);
 function ropenModal()
@@ -71,5 +71,26 @@ $(document).ready(function(){
 	$('#contact').click(function(){
 		$('#contactModal').modal('show');
 	});
+	$('#poll').click(function(){
+		alert('js connected');
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("Login/poll")',
+			data:{'ip':ip,'option':option},
+			success:function(data)
+			{
+				$('.question')[0].reset();
+              $('#poll-result').html('you have successfullyvoted').fadeIn().delay(4000).fadeOut('slow');
+             
+           
+			},
+			error:function()
+			{
+				$('.question')[0].reset();
+              $('#poll-result').html('you have alredy voted').fadeIn().delay(4000).fadeOut('slow');
+			}
+		});
+	});
 
 });
+       

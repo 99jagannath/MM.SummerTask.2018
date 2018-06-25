@@ -294,20 +294,17 @@ class Login extends MY_Controller
       {
      $poll=$this->input->post();
     unset($poll['submit']);
-    $ip=$_SERVER['REMOTE_ADDR']?:($_SERVER['HTTP_X_FORWARDED_FOR']?:$_SERVER['HTTP_CLIENT_IP']);
+    $ip=$poll['ip'];
     $this->load->model('loginmodel');
     $q=$this->loginmodel->poll($poll,$ip);
-    if($q)
-    {
-      $this->session->set_flashdata('poll','you successfully voted');
-      //echo "ok";
-    }
-    else
-    {
-      $this->session->set_flashdata('poll','you have already voted');
-      //echo "no";
-    }
-    return redirect('login');
+   
+     $msg['success']=false;
+      if($q)
+      {
+      $msg['success']=true;
+       }
+      echo json_encode($msg);
+   
   }
   public function test()
   {
