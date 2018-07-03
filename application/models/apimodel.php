@@ -157,6 +157,10 @@ class Apimodel extends CI_Model
     {
       return $this->db->insert('user',$data);  
     }
+    public function poll($data)
+    {
+      return $this->db->insert('poll',$data);   
+    }
    
 }
 
