@@ -47,16 +47,20 @@
     {
       return $this->db->insert('comment',$comment);
     }
-    public function insert_result($answer)
+    public function insert_result($answer,$ip)
     {
-      $result=$this->db->insert('answer',$answer);
-      if($result)
+      $q=$this->db->select('*')
+                  ->where('ip',$ip)
+                  ->get('answer');
+      
+      if($q->num_rows())
       {
-        return TRUE;
+        return FALSE;
       }
       else
       {
-        return FALSE;
+        $this->db->insert('answer',$answer);
+        return TRUE;
       }
     }
     public function answer_comment($id,$answer)
@@ -70,6 +74,33 @@
     public function test($id,$test)
     {
       return $this->db->update('test',$test,['id'=>$id]);
+    }
+    public function profile($id)
+    {
+      $q=$this->db->select('*')
+                  ->where('user_id',$id)
+                  ->get('user');
+            return $q->row();      
+    }
+    public function result_insert($data,$id)
+    {
+      return $this->db->update('answer',$data,['id'=>$id]);
+    }
+    public function publish($ip)
+    {
+      $q=$this->db->select('*')
+                  ->where('ip',$ip)
+                  ->get('answer');
+      
+      if($q->num_rows())
+      {
+        return TRUE;
+      }
+      else
+      {
+        
+        return FALSE;
+      } 
     }
   }
 

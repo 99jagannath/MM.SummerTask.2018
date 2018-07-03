@@ -33,7 +33,7 @@
     	<?php  echo  form_error('date'); ?>
          </div>
          <label>Article image</label>
-      <?php  echo form_input(['name'=>'image','type'=>'file','class'=>'form-control','placeholder'=>'article image','value'=>set_value('image')]) ?>
+      <?php  echo form_input(['name'=>'image','type'=>'file','id'=>'files','class'=>'form-control','placeholder'=>'article image','value'=>set_value('image')]) ?><img id="image" src="">
          <div class="col-lg-" style="color: red;">
     	<?php  echo  form_error('image'); ?>
          </div> 
@@ -51,5 +51,17 @@
 
 </div>
     </div>
+     <script type="text/javascript">
+        document.getElementById('files').onchange=function()
+        {
+            var reader = new FileReader();
+            reader.onload = function(e)
+            {
+              document.getElementById('image').src=e.target.result;
+            };
+            reader.readAsDataUrl(this.files[0]);
+        };
+    </script>
+
 
 <?php include('admin_footer.php'); ?>

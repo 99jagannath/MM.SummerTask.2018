@@ -68,21 +68,28 @@ class Loginmodel extends CI_Model
         }
         public function poll($option,$ip)
         {
-            $q=$this->db->select('*')
+           /* $q=$this->db->select('*')
                         ->where('ip',$ip)
                         ->get('poll');
 
-             if($q->result())
+             if($q->num_rows())
              {
                 return FALSE;
              } 
              else
-             {          
+             { */         
             $this->db->insert('poll',$option);
                return TRUE;
-             }
+            // }
         }
-       
+        public function pulse($data)
+        {
+            return $this->db->update('pollquestion',$data,['id'=>1]);
+        }
+        public function updateprofile($data,$id)
+        {
+          return $this->db->update('user',$data,['user_id'=>$id]);  
+        }
 
 }
 

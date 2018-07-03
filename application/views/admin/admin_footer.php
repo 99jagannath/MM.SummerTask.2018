@@ -13,7 +13,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?= base_url('asests/')?>dist/js/sb-admin-2.js"></script>
-
+   
 </body>
 
 </html>

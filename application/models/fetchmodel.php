@@ -24,6 +24,8 @@ class Fetchmodel extends CI_Model
 		            ->get('article');
 		    return $q->row();      
 	}
+   
+
 	public function fetchsquiggles()
 	{   
 		$j=1;
@@ -121,6 +123,19 @@ class Fetchmodel extends CI_Model
                         ->where('article_id',$id)
                        ->get('comment');
                     return $q->result();   
+        }
+        public function pulse()
+        {
+            $q=$this->db->select('*')
+                        ->get('pollquestion');
+                     return $q->row();      
+        }
+        public function perresult($ip)
+        {
+            $q=$this->db->select('*')
+                        ->where('ip',$ip)
+                        ->get('answer');
+                 return $q->row();       
         }
 	
 }
