@@ -1,4 +1,7 @@
-
+.icon,.archives:hover
+{
+  color: blue;
+}
 .facebook
 {
   margin: 20px; 

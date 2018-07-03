@@ -19,22 +19,43 @@ class Admin extends MY_Controller
      $this->load->model('fetchmodel');
     $data['carosel']=$this->fetchmodel->fetcharticle1('carosel');
         $data['mainpost']=$this->fetchmodel->fetcharticle2('mainpost');
+        $mainpost=$this->fetchmodel->fetcharticle2('mainpost');
+        $data['mainpostc']=$this->fetchmodel->fetchcomment($mainpost->title);
         $data['l21']=$this->fetchmodel->fetcharticle2('ask a question');
+         $l21=$this->fetchmodel->fetcharticle2('ask a question');
+         $data['l21c']=$this->fetchmodel->fetchcomment($l21->title);
          $data['l22']=$this->fetchmodel->fetcharticle2('poll analysis');
+         $l22=$this->fetchmodel->fetcharticle2('poll analysis');
+         $data['l22c']=$this->fetchmodel->fetchcomment($l22->title);
          $data['l23']=$this->fetchmodel->fetcharticle2('campus buzz');
+         $l23=$this->fetchmodel->fetcharticle2('campus buzz');
+          $data['l23c']=$this->fetchmodel->fetchcomment($l23->title);
          $data['l31']=$this->fetchmodel->fetcharticle2('photo jounalism');
+          $l31=$this->fetchmodel->fetcharticle2('photo jounalism');
+         $data['l31c']=$this->fetchmodel->fetchcomment($l31->title);
           $data['l32']=$this->fetchmodel->fetcharticle2('roots');
+           $l32=$this->fetchmodel->fetcharticle2('roots');
+          $data['l32c']=$this->fetchmodel->fetchcomment($l32->title);
          $data['l41']=$this->fetchmodel->fetcharticle2('department-1');
+          $l41=$this->fetchmodel->fetcharticle2('department-1');
+          $data['l41c']=$this->fetchmodel->fetchcomment($l41->title);
          $data['l42']=$this->fetchmodel->fetcharticle2('department-2');
+          $l42=$this->fetchmodel->fetcharticle2('department-2');
+          $data['l42c']=$this->fetchmodel->fetchcomment($l42->title);
          $data['l43']=$this->fetchmodel->fetcharticle2('department-3');
-          $data['squiggles']=$this->fetchmodel->fetchsquiggles();
-          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
+          $l43=$this->fetchmodel->fetcharticle2('department-3');
+          $data['l43c']=$this->fetchmodel->fetchcomment($l43->title);
+         $data['squiggles']=$this->fetchmodel->fetchsquiggles();
+         $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
+         $pow=$this->fetchmodel->fetcharticle2('picofweek');
+         $data['powc']=$this->fetchmodel->fetchcomment($pow->title);
           $data['cz']=$this->fetchmodel->fetchcz();
-           $data['option1']=$this->fetchmodel->fetchpoll('option1');
+          $data['pulse']=$this->fetchmodel->pulse();
+          $data['video']=$this->fetchmodel->fetchvideo();
+          $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
-          $data['video']=$this->fetchmodel->fetchvideo();
     $this->load->view('public/student',$data);
   }
    public function admins()
@@ -42,22 +63,43 @@ class Admin extends MY_Controller
      $this->load->model('fetchmodel');
     $data['carosel']=$this->fetchmodel->fetcharticle1('carosel');
         $data['mainpost']=$this->fetchmodel->fetcharticle2('mainpost');
+        $mainpost=$this->fetchmodel->fetcharticle2('mainpost');
+        $data['mainpostc']=$this->fetchmodel->fetchcomment($mainpost->title);
         $data['l21']=$this->fetchmodel->fetcharticle2('ask a question');
+         $l21=$this->fetchmodel->fetcharticle2('ask a question');
+         $data['l21c']=$this->fetchmodel->fetchcomment($l21->title);
          $data['l22']=$this->fetchmodel->fetcharticle2('poll analysis');
+         $l22=$this->fetchmodel->fetcharticle2('poll analysis');
+         $data['l22c']=$this->fetchmodel->fetchcomment($l22->title);
          $data['l23']=$this->fetchmodel->fetcharticle2('campus buzz');
+         $l23=$this->fetchmodel->fetcharticle2('campus buzz');
+          $data['l23c']=$this->fetchmodel->fetchcomment($l23->title);
          $data['l31']=$this->fetchmodel->fetcharticle2('photo jounalism');
+          $l31=$this->fetchmodel->fetcharticle2('photo jounalism');
+         $data['l31c']=$this->fetchmodel->fetchcomment($l31->title);
           $data['l32']=$this->fetchmodel->fetcharticle2('roots');
+           $l32=$this->fetchmodel->fetcharticle2('roots');
+          $data['l32c']=$this->fetchmodel->fetchcomment($l32->title);
          $data['l41']=$this->fetchmodel->fetcharticle2('department-1');
+          $l41=$this->fetchmodel->fetcharticle2('department-1');
+          $data['l41c']=$this->fetchmodel->fetchcomment($l41->title);
          $data['l42']=$this->fetchmodel->fetcharticle2('department-2');
+          $l42=$this->fetchmodel->fetcharticle2('department-2');
+          $data['l42c']=$this->fetchmodel->fetchcomment($l42->title);
          $data['l43']=$this->fetchmodel->fetcharticle2('department-3');
-          $data['squiggles']=$this->fetchmodel->fetchsquiggles();
-          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
+          $l43=$this->fetchmodel->fetcharticle2('department-3');
+          $data['l43c']=$this->fetchmodel->fetchcomment($l43->title);
+         $data['squiggles']=$this->fetchmodel->fetchsquiggles();
+         $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
+         $pow=$this->fetchmodel->fetcharticle2('picofweek');
+         $data['powc']=$this->fetchmodel->fetchcomment($pow->title);
           $data['cz']=$this->fetchmodel->fetchcz();
-           $data['option1']=$this->fetchmodel->fetchpoll('option1');
+          $data['pulse']=$this->fetchmodel->pulse();
+          $data['video']=$this->fetchmodel->fetchvideo();
+          $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
-          $data['video']=$this->fetchmodel->fetchvideo();
     $this->load->view('public/admins',$data);
   }
 
@@ -238,6 +280,24 @@ class Admin extends MY_Controller
       $this->session->set_flashdata('test_class','alert-danger');
       }
       return redirect('redirect/test');
+    }
+    public function see_answer($ip)
+    {
+      $this->load->model('articlemodel');
+      if($this->articlemodel->publish($ip))
+      {
+        
+    $this->load->model('fetchmodel');
+    $data['answers']=$this->fetchmodel->answer();
+    $data['questions']=$this->fetchmodel->fetch_test();
+    $this->load->view('public/test',$data);
+      }
+      else
+      {
+        $this->session->set_flashdata('test','please give the test first');
+      $this->session->set_flashdata('test_class','alert-danger');
+      return redirect('login/test');
+      }
     }
 	
 }

@@ -16,7 +16,7 @@
      </div>
    </div>
   <?php endif;?>
-                 <?php $j=1; ?>
+                 
                 <?php  foreach($questions as $question):
                      if($question->answer==NULL):
                  ?>
@@ -26,7 +26,8 @@
                 	<?php  echo form_hidden('email',$question->email) ?>
                 	<?php  echo form_hidden('mobileno',$question->mobileno) ?>
                 	<?php  echo form_hidden('type',$question->type) ?>
-                	<?php echo $j."  ".$question->type ?> <br>
+                	<span>Catagory : </span><?php echo $question->type ?> <br>
+                  <span>Asking date : </span><?php echo $question->date ?> <br>
                 	<?php echo $question->question ?><br>
                 	<?php echo form_input(['name'=>'answer','type'=>'text','placeholder'=>'enter your answer here','class'=>'form-control','value'=>set_value('answer')]) ?>
                 	<br>
@@ -37,7 +38,7 @@
                    <hr>
                 <?php
             endif;
-                   ++$j;
+                   
                  endforeach; ?>
                  
             </div>

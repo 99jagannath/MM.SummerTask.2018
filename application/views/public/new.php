@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<!--meta tags-->
-	<meta http-equiv="content-type" content="text/html/php;charset=UFT-8"/>
-	<meta name="keyword" content="mm,monday,monday morning,mondaymorning,mondaymorning nit rourkela,nitr,nit rourkrla" />
+	<meta http-equiv="content-type" content="text/html;charset=UFT-8"/>
+	<meta name="keyword" content="monday,monday morning,mondaymorning,mondaymorning nit rourkela,nitr,nit rourkrla" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 	<meta name="description" content="Monday Morning is the official Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students"/>
 	<meta  name="author" content="jagannath pandit"/>
-	<meta http-equiv="refresh" content="300"/>
+	<meta http-equiv="refresh" content="3600"/>
 	<meta property="og:title" content="Monday Morning - The official student media body of NIT Rourkela, India" />
 	<meta property="og:description" content="Monday Morning is the official Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students." />
 	<meta property="og:type" content="website" />
@@ -52,11 +52,10 @@
 </head>
 
 <body>
-	
-<div class="main" style="height: auto; width: auto;">
+<div class="main">
 <header class="row" id="header">
-	<div class="col-md-6">
-		
+<div class=" logo col-lg-6">
+		<button id="modalbtn" class="button"><font style="color: white;">Login *</font></button>
 <div class="modal" id="samplemodal">
     <div class="modal-content">
         
@@ -99,7 +98,7 @@
 	<!--start of menu-->
 
 
-		
+		<button id="rmodalbtn" class="rbutton"><font style="color: white;">Resister *</font></button>
 <div class="rmodal" id="rsamplemodal">
     <div class="rmodal-content">
         
@@ -119,7 +118,7 @@
   <?php endif;?>
     	 <span class="rcloseBtn" id="rcloseBtn">&times;</span>
        <?php echo form_open('Login/resistration')?>
-	      <label>UserName</label><br>
+	      <label>Username</label><br>
          <input type="text" name="username" placeholder="Username" required><br>
 		 <label>Password</label><br>
          <input type="password" name="password" placeholder="Password" required><br>
@@ -142,40 +141,15 @@
 
 
 	</div>
-	
-<div class="col-md-6">
-	<nav class="navbar navbar-default navbar-fixed-right" style="background-color: transparent;border-style: none;">
-	<div class="container-fluid">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mm">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="mm">
-			<ul class="nav navbar-nav b">
-				<li class="l"><a href="#"><font color="white">home *</font></a></li>
-				<li class="l"><a href="#"><font color="white">issue *</font></a></li>
-				<li class="l"><a href="#"><font color="white">about *</font></a></li>
-				<li class="l"><a href="#" id="contact" class="contact"><font style="color: white;">contact *</font></a></li>
-				<li class="l"><a href="#" id="rmodalbtn" class="rbutton"><font style="color: white;">Resister *</font></a></li>
-				<li class="l"><a href="#" id="modalbtn" class="button"><font style="color: white;">Login *</font></a></li>
-			</ul>
-		</div>
-	</div>
-	
-</nav>
-
-</div>
       <!--end of first menu-->
       
 </header>
-<nav class="navbar navbar-inverse navbar-static-top nav-pills nav-stacked-top" data-spy="affix" data-offset-top="390" role="navigation" style="background-color:white;opacity: 1;border: 0.5px black;width: 100%;margin-left: 0px;">
 <div class="row secondheader">
  <nav class="header2 row " style="background:transparent;">
 	<div class="new col-lg-10" id="navlist">
 			<ul >
-				<li><a href="<?= base_url('login');  ?>" ><b><i class="fa fa-home" aria-hidden="true"></i>Home</b></a></li>
-				<li id="megamenu" style="width: 150px;"><a href="#"><b>Department</b></a>
+				<li><a href="<?= base_url('login');  ?>"><b><i class="fa fa-home" aria-hidden="true"></i>Home</B></a></li>
+				<li id="megamenu"><a href="#"><b>Department</b></a>
 				<ul class="subnavlist">
 						<li><a href="#">Biotechnology and Biomedical Engineering </a></li>
 						<li><a href="#">Ceramic Engineering</a></li>
@@ -255,7 +229,7 @@
 						<li><a href="#">Videos</a></li>
 					</ul>
 				</li>
-				<li style="width: 50px;"><a href="#"><b><i class="fa fa-info-circle" aria-hidden="true"></i>info</b></a>
+				<li><a href="#"><b><i class="fa fa-info-circle" aria-hidden="true"></i>info</b></a>
 				<ul class="subnavlist8">
 						<li><a href="#">Communication Directory</a></li>
 						<li><a href="#">Health and Emergency</a></li>
@@ -267,25 +241,24 @@
 						<li><a href="#">Priject Adamantium</a>
 					</ul>
 				</li>
-				<li style="width: 50px;"><a href="#"><b><i class="fa fa-dot-circle-o" aria-hidden="true"></i>Live</b></a></li>
+				<li><a href="#"><b><i class="fa fa-dot-circle-o" aria-hidden="true"></i>Live</b></a></li>
 			</ul>
  </div>
 		
-  <div class="search  search-box-wrapper col-lg-2 col-xs-8">
-		<form action="#" method="post" name="myform" novalidate>
+   <div class="search  search-box-wrapper col-lg-2 col-xs-8">
 		
-		<input type="text" class="search-box-input" placeholder="Search articles" name="search">
-		
+	
+			<form action="login/search" method="post">
+		<input type="text" class="search-box-input" placeholder="Search articles" name="search" required>
+	
 		
 		<button type="submit" class="search-box-botton">&#128269;</button>
-	   
+	  
 		</form>
 	</div>		
-
  </nav>  
 </div>
-</nav>
- <div class="mainbody" style="height: auto; width: auto;">
+ <div class="mainbody">
  	<div class="row upperpart">
  		<div class="posts col-md-9 col-sm-12">
  			<div class="row"><!--feature post-->
@@ -304,7 +277,7 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="max-width:  571px";>
+    <div class="carousel-inner" style="max-width:  570px";>
       <?php 
        $j=1;
        foreach ($carosel as $item ): 
@@ -313,8 +286,8 @@
       ?>  
       <div class="item active" style="max-width:  570px";>
         <a href="<?php echo base_url()?>login/article/<?php echo $item->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $item->image ?>" alt="Los Angeles" style="max-width:  570px;"></a>
-        <div class="carousel-caption" >
-          <h1 ><a href="<?php echo base_url()?>login/article/<?php echo $item->id ?>" style="color: white;"><?= $item->title ?></a></h1>
+        <div class="carousel-caption">
+          <h1><a href="<?php echo base_url()?>login/article/<?php echo $item->id ?>" style="color: white;"><?= $item->title ?></a></h1>
           <h3><?= $item->tag ?></h3>
         </div>
       </div>
@@ -352,16 +325,15 @@
                  </div>
                  <div class="col-lg-5">
              
-                 	<a href="<?php echo base_url()?>login/article/<?php echo $mainpost->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $mainpost->image ?>" style="max-width: 380px;"></a>
+                 	<a href="<?php echo base_url()?>login/article/<?php echo $mainpost->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $mainpost->image ?>" style="max-width: 350px;"></a>
                  	<div class="info">
- 						<p class="tag thumbnail"><?php echo $mainpost->tag ?></p>
+ 						<p class="tag"><?php echo $mainpost->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $mainpost->id ?>" style="color: black;"><?php echo $mainpost->title ?></a></h1>
  						<p class="detail"><?php echo $mainpost->date ?> | <?php echo $mainpost->author ?></p>
  						<p class="text"><?php echo $mainpost->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($mainpostc) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -378,13 +350,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l21->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l21->image ?>" style="max-width: 300px;"></a>
  						</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l21->tag ?></p>
+ 						<p class="tag"><?php echo $l21->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l21->id ?>" style="color: black;"><?php echo $l21->title ?></a></h1>
  						<p class="detail"><?php echo $l21->date ?> | <?php echo $l21->author ?></p>
  						<p class="text"><?php echo $l21->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l21c ) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -394,13 +366,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l22->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l22->image ?>" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l22->tag ?></p>
+ 						<p class="tag"><?php echo $l22->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l22->id ?>" style="color: black;"><?php echo $l22->tag ?></a></h1>
  						<p class="detail"><?php echo $l22->date ?> | <?php echo $l22->author ?></p>
  						<p class="text"><?php echo $l22->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l22c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -410,13 +382,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l23->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l23->image ?>" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l23->tag ?></p>
+ 						<p class="tag"><?php echo $l23->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l23->id ?>" style="color: black;"><?php echo $l23->title ?></a></h1>
  						<p class="detail"><?php echo $l23->date ?> | <?php echo $l23->author ?></p>
  						<p class="text"><?php echo $l23->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l23c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -428,13 +400,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l31->id ?>"><img  src="<?php echo base_url('asests/images/')?><?php echo $l31->image ?>" class="img-responsive" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l31->tag ?></p>
+ 						<p class="tag"><?php echo $l31->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l31->id ?>" style="color: black;"><?php echo $l31->title ?></a></h1>
  						<p class="detail"><?php echo $l31->date ?> | <?php echo $l31->author ?></p>
  						<p class="text">.....</p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l31c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -450,7 +422,7 @@
  						<p class="text"></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l32c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -469,19 +441,13 @@
  			<br>
  			<div class="pic-of-the-week col-md-12 col-sm-6" style="height: 500px;">
  				<h4>PIC OF THE WEEK</h4>
- 				<a href="<?php echo base_url()?>login/article/<?php echo $pow->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $pow->image ?>"></a>
+ 				<img src="<?php echo base_url('asests/images/')?><?php echo $pow->image ?>">
  				<article class="mid">
  					<div class="info">
- 						<h1><a href="<?php echo base_url()?>login/article/<?php echo $pow->id ?>"><?php echo $pow->title ?></a></h1>
+ 						<h1><?php echo $pow->title ?></h1>
  						<p><?php echo $pow->author ?></p>
  						<p><?php echo $pow->body ?></p>
- 						
- 						<ul class="counters list-inline">
-										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($powc) ?></a>
-										</li>
-									</ul>
-									<p>Send your entries at  </p>
+ 						<p>Send your entries at  </p>
  						<a href="#">morning..monday@gmail.com</a>
  					</div>
  				</article>
@@ -499,19 +465,6 @@
  			</div>
  			<br>
  			<div id="poll-widget" class="col-md-12 col-sm-6 poll-widget" data-pollid="" style="position: relative; min-height: 200px;">
- 						<?php 
-    if($feedback=$this->session->flashdata('poll')) :
-       
-     ?>
-   <div class="row">
-     <div class="col-lg-6 col-lg-offset-3">
-       <div class="alert alert-info ?>">
-            <?=$feedback ?>            
-       </div>
-     </div>
-   </div>
-  <?php endif;?>
- 			<br>
  				<?php 
                   $no1=count($option1);
                   $no2=count($option2);
@@ -557,8 +510,6 @@
            	<h4 style="text-align: center;">poll question</h4>
            	<p><strong>How safe is the institute to protect itself from various unforseen hazards(fire, construction etc)?</strong></p>
 	          <?php echo form_open('login/poll') ?>
-	         <?php  $ip=$_SERVER['REMOTE_ADDR']?:($_SERVER['HTTP_X_FORWARDED_FOR']?:$_SERVER['HTTP_CLIENT_IP']);
-	           echo form_hidden('ip',$ip); ?>
 	         <?php $radio1=array(
 	                  'name'=>'option',
 	                  'value'=>'option1'
@@ -600,13 +551,13 @@
  					   	<a href="<?php echo base_url()?>login/article/<?php echo $l41->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l41->image ?>" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><a href="#"><?php echo $l41->tag ?></a></p>
+ 						<p class="tag"><a href="#"><?php echo $l41->tag ?></a></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l41->id ?>" style="color: black;"><?php echo $l41->title ?></a></h1>
  						<p class="detail"><?php echo $l41->date ?> | <?php echo $l41->author ?></p>
  						<p class="text"><?php echo $l41->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l41c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -616,13 +567,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l42->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l42->image ?>" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l42->tag ?></p>
+ 						<p class="tag"><?php echo $l42->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l42->id ?>" style="color: black;"><?php echo $l42->title ?></a></h1>
  						<p class="detail"><?php echo $l42->date ?> | <?php echo $l42->author ?></p>
  						<p class="text"><?php echo $l41->body ?></p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l42c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -632,13 +583,13 @@
  						<a href="<?php echo base_url()?>login/article/<?php echo $l43->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $l43->image ?>" style="max-width: 300px;"></a>
  					</div>
  					<div class="info">
- 						<p class="tag thumbnail"><?php echo $l43->tag ?></p>
+ 						<p class="tag"><?php echo $l43->tag ?></p>
  						<h1><a href="<?php echo base_url()?>login/article/<?php echo $l43->id ?>" style="color: black;"><?php echo $l43->title ?></a></h1>
  						<p class="detail"><?php echo $l43->date ?> | <?php echo $l43->author ?></p>
  						<p class="text"><?php echo $l43->body ?> </p>
  						<ul class="counters list-inline">
 										<li>
-											<a href="#"> <span class="glyphicon glyphicon-comment"></span> <?php echo count($l43c) ?></a>
+											<a href="#"> <span class="glyphicon glyphicon-comment"></span> 1</a>
 										</li>
 									</ul>
  					</div>
@@ -660,159 +611,21 @@
  			</aside>
  		
  	</div><!--end of middlepart-->
- 	<div class="row" style="width: 1300px;height: 330px; margin-left: 20px;" >
- 		
- 		<div class="row" style="margin-left: 20px; margin-right: 20px;">
-			<h4>EDITOR'S PICK</h4>
-			<div id="demop" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-				  <li data-target="#demop" data-slide-to="0" class="active"></li>
-				  <li data-target="#demop" data-slide-to="1"></li>
-				</ul>
-
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-				  	<div class="carousel-item active">
-						<div class="row">
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="1 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="2 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="3 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="4 slide"></div>
-       					</div>
-				  	</div>
-				  	<div class="carousel-item">
-						<div class="row">
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="1 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="2 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="3 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="4 slide"></div>
-       					</div>
-				  	</div>
-				</div>
-
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demop" data-slide="prev">
-				  <span class="carousel-control-prev-icon"></span>
-				</a>
-				<a class="carousel-control-next" href="#demop" data-slide="next">
-				  <span class="carousel-control-next-icon"></span>
-				</a>				
-			</div>
-		</div>	
-		<hr>
- 	</div>
-    <br>
- 	
- 	<div class="row" style="width: 1300px;height: 330px; ;margin-left: 20px;" >
- 		<div class="row" style="margin-left: 20px; margin-right: 20px;">
-			<h4>NEWS ISSUE</h4>
-			<div id="demop" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-				  <li data-target="#demop" data-slide-to="0" class="active"></li>
-				  <li data-target="#demop" data-slide-to="1"></li>
-				</ul>
-
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-				  	<div class="carousel-item active">
-						<div class="row">
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="1 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="2 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="3 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="4 slide"></div>
-       					</div>
-				  	</div>
-				  	<div class="carousel-item">
-						<div class="row">
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="1 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="2 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="3 slide"></div>
-           					<div class="col-md-3 col-sm-6"><img class="img-fluid" src="asests/images/mainpost.jpg" alt="4 slide"></div>
-       					</div>
-				  	</div>
-				</div>
-
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demop" data-slide="prev">
-				  <span class="carousel-control-prev-icon"></span>
-				</a>
-				<a class="carousel-control-next" href="#demop" data-slide="next">
-				  <span class="carousel-control-next-icon"></span>
-				</a>				
-			</div>
-		</div>	
-		<hr>
- 		<br>
- 		
- 	</div>
-    <br>
- 	
- 	<div class="row" style="width: 1300px;height: 400px;;margin-left: 20px; background-color: black;"  >
- 	 <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" style="border: 1px solid">
- 	 	<p style="color:#FFFFFF;"><strong style="font-size: 20px; content: blue;">ABOUT</strong></p><br>
-			<p id="d" style="color: white;">Monday Morning is the official Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.</p>
-
- 	 </div>	
- 	  <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" style="">
- 	  		<p><strong style="font-size: 20px; content: blue;color: white;">ACHRIVES</strong></p>
-    
-    <div class="row" style="height: 60px; border-bottom-style:ridge; border-bottom-color: white; padding-left: 40px;"><a id="k"  style="color: white;" href="#">2016-17</a></div>
-    <div class="row" style="height: 60px; border-bottom-style:ridge; border-bottom-color: white; padding-left: 40px;"><a id="k"  style="color: white;" href="#">2015-16</a></div>
-    <div class="row" style="height: 60px; border-bottom-style:ridge; border-bottom-color: white; padding-left: 40px;"><a id="k"  style="color: white;" href="#">2014-15</a></div>
-    <div class="row" style="height: 60px; border-bottom-style:ridge; border-bottom-color: white; padding-left: 40px;"><a id="k"  style="color: white;" href="#">2013-14</a></div>
-    <div class="row" style="height: 60px; border-bottom-style:ridge; border-bottom-color: white; padding-left: 40px;"><a id="k"  style="color: white;" href="#">2012-13</a></div>
- 	  </div>
- 	   <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" style="">
- 	   		<p  style="color: white;"><strong style="font-size: 20px; content: white;">EVENT</STRONG></p>
-	<div class="row" style="height: 60px; text-decoration: underline; padding-left: 40px;"><a id="k" href="#" style="color:white;">7th april-mondamorning induction</a></div>
-    <div class="row" style="height: 60px; text-decoration: underline; padding-left: 40px;"><a id="k" href="#" style="color:white;">7th april- IPL started</a></div>
-    <div class="row" style="height: 60px; text-decoration: underline; padding-left: 40px;"><a id="k" href="#" style="color:white;">13th april -institute farewel party</a></div>
-    <div class="row" style="height: 60px; text-decoration: underline; padding-left: 40px;"><a id="k" href="#" style="color:white;">23rd april- end semester exam</a></div>
-    <div class="row" style="height: 60px; text-decoration: underline; padding-left: 40px;"><a id="k" href="#" style="color:white;">30th april- summer vacation</a></div>
- 	   </div>
- 	    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" style="">
- 	    	<p style="color: white;" ><strong style="font-size: 20px; content: white;">CALENDER</STRONG></p>
-		<div class="cal1 row">
-			<h4 style="color: white;">7th/April/2018      SATURDAY</h4>
-		</div>
-		<div class="cal2 row">
-			<table  class="table tbl" border="2px" cellspacing="300px" cellpadding="5px"  bgcolor="green" style="color: white;">
-				<tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td><a href="#">31</a></td><td><a href="#">1</a></td></tr>
-				<tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td><a href="#">7</a></td><td><a href="#">8</a></td></tr>
-				<tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td><a href="#">14</a></td><td><a href="#">15</a></td></tr>
-				<tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td><a href="#">21</a></td><td><a href="#">22</a></td></tr>
-				<tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td><a href="#">28</a></td><td><a href="#">29</a></td></tr>
-				<tr><td>30</td><td>1</td><td>2</td><td>3</td><td>4</td><td><a href="#">5</a></td><td><a href="#">6</a></td></tr>
-			</table>
- 	    </div>
- 	</div>
-    <br>
- 	<hr>
- 	</div>
- 	<div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="<?= base_url('login/question');  ?>" class="btn btn-lg btn-success pull-right" style="float: right;">Ask a Question</a></div>
-<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <a href="<?= base_url('login/forum');  ?>" class="btn btn-lg btn-success pull-right" style="float:left;margin-left: 0px">forum</a>	</div>	
- 
  </div>
  <!--end of main body-->
 	<!--END FOOTER	</div>-->
+
 	<!--END CONTAINER-->
 	
-		
+		<h1>jaga</h1>
+		<a href="<?= base_url('login/question');  ?>" class="btn btn-lg btn-success pull-right" style="float: right;">Ask a Question</a>
 	
 <!--end of footer-->
 </div><!--end of main-->
-
- 	<script
+<script type="text/javascript" src="<?php echo base_url('asests/js/')?>mm.js"></script>
+<script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url('asests/js/')?>mm.js"></script>
-
 </body>
 </html>

@@ -38,6 +38,7 @@ class Login extends MY_Controller
          $pow=$this->fetchmodel->fetcharticle2('picofweek');
          $data['powc']=$this->fetchmodel->fetchcomment($pow->title);
           $data['cz']=$this->fetchmodel->fetchcz();
+          $data['pulse']=$this->fetchmodel->pulse();
           $data['video']=$this->fetchmodel->fetchvideo();
           $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
@@ -69,7 +70,8 @@ class Login extends MY_Controller
                    'username'=>$user->username,
                    'email'=>$user->email,
                     'mobileno'=>$user->mobileno,
-                    'status'=>$user->status  
+                    'status'=>$user->status,
+                    'pic'=>$user->image  
              	);
              $this->session->set_userdata($user_data);
              if($this->session->userdata('status'))
@@ -103,6 +105,7 @@ class Login extends MY_Controller
        $data['squiggles']=$this->fetchmodel->fetchsquiggles();
          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
           $data['cz']=$this->fetchmodel->fetchcz();
+           $data['pulse']=$this->fetchmodel->pulse();
           $data['video']=$this->fetchmodel->fetchvideo();
           $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
@@ -119,6 +122,7 @@ class Login extends MY_Controller
        $data['squiggles']=$this->fetchmodel->fetchsquiggles();
          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
           $data['cz']=$this->fetchmodel->fetchcz();
+           $data['pulse']=$this->fetchmodel->pulse();
           $data['video']=$this->fetchmodel->fetchvideo();
           $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
@@ -132,9 +136,14 @@ class Login extends MY_Controller
     $comment=$this->input->post();
     unset($comment['submit']);
     $this->load->model('articlemodel');
+    $this->load->library('session');
+    // echo $this->session->userdata('user_id') ;
+    //echo $this->session->userdata('id');
+    //echo "jaga";
     //print_r($comment);
     //echo $comment['article_id'];
-    if($this->session->userdata('id'))
+    
+    if($this->session->userdata('user_id'))
     {
     if($this->articlemodel->comment($comment))
       {
@@ -144,7 +153,7 @@ class Login extends MY_Controller
       {
         $this->session->set_flashdata('comment','please try again');
      }
-      return redirect('admin/student');
+      return redirect('login/comment/'.$comment['article_id']);
     }
     else
     {
@@ -173,6 +182,7 @@ class Login extends MY_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata('user_data');
+
 		return redirect('login');
 	}
   public function question()
@@ -181,6 +191,7 @@ class Login extends MY_Controller
      $data['squiggles']=$this->fetchmodel->fetchsquiggles();
          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
           $data['cz']=$this->fetchmodel->fetchcz();
+           $data['pulse']=$this->fetchmodel->pulse();
           $data['video']=$this->fetchmodel->fetchvideo();
           $data['option1']=$this->fetchmodel->fetchpoll('option1');
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
@@ -292,14 +303,14 @@ class Login extends MY_Controller
   }
   public function poll()
       {
-     $poll=$this->input->post();
-    unset($poll['submit']);
-    $ip=$poll['ip'];
+    $poll=$this->input->post();
+    //print_r($poll);
+    $ip=$poll['ip']; 
     $this->load->model('loginmodel');
-    $q=$this->loginmodel->poll($poll,$ip);
+    
    
      $msg['success']=false;
-      if($q)
+      if($this->loginmodel->poll($poll,$ip))
       {
       $msg['success']=true;
        }
@@ -309,6 +320,7 @@ class Login extends MY_Controller
   public function test()
   {
     $this->load->model('fetchmodel');
+    $data['answers']=NULL;
     $data['questions']=$this->fetchmodel->fetch_test();
     $this->load->view('public/test',$data);
   }
@@ -316,12 +328,211 @@ class Login extends MY_Controller
   {
     $this->load->model('articlemodel');
     $post=$this->input->post();
+    //echo "<pre>";
     //print_r($post);
+    //echo $post['ip'];
     unset($post['submit']);
-    $result=$this->articlemodel->insert_result($post);
-    if($result)
-    {
-      $this->session->set_flashdata('test','thanks for giving test');
+    $this->load->model('fetchmodel');
+    $answer=$this->fetchmodel->answer();
+     $this->load->model('articlemodel');
+     $result=$this->articlemodel->insert_result($post,$post['ip']);
+    $pp=$this->fetchmodel->perresult($post['ip']);
+    //echo "<pre>";
+    //print_r($pp);
+    $qn=count($answer);
+    $s=1;
+    $m=0;
+     for($j=1;$j<=$qn;$j++)
+      {
+      $pq=$this->fetchmodel->panswer($s);
+      //echo "<pre>";
+      //print_r($pq);
+      // echo $m;
+      if($s==1)
+      {
+       // echo $pp->q1;
+       // echo "q1";
+       // echo $pq->answer;
+
+        //echo "<br>";
+
+       if($pp->q1==$pq->answer)
+       {
+
+        ++$m;
+        
+        //echo $m;
+       
+         }
+       }
+       if($s==2)
+       {
+       // echo $pp->q2;
+       // echo $pq->answer;
+       if($pp->q2==$pq->answer)
+       {
+        ++$m;
+        
+       // echo $m;
+       }
+       }
+       if($s==3)
+       {
+       if($pp->q3==$pq->answer)
+       {
+        ++$m;
+        //echo $pp->q3;
+       // echo $pq->answer;
+        //echo $m;
+       }
+       }
+       if($s==4)
+       {
+         //echo $pp->q4;
+        //echo $pq->answer;
+       if($pp->q4==$pq->answer)
+       {
+        ++$m;
+       
+        //echo $m;
+       }
+       }
+       if($s==5)
+       {
+       // echo $pp->q5;
+        //echo $pq->answer;
+       if($pp->q5==$pq->answer)
+       {
+        ++$m;
+        
+        //echo $m;
+       }
+       }
+       if($s==6)
+       {
+       // echo $pp->q6;
+       // echo $pq->answer;
+       if($pp->q6==$pq->answer)
+       {
+        ++$m;
+        
+       // echo $m;
+       }
+       }
+       if($s==7)
+       {
+        //echo $pp->q7;
+        //echo $pq->answer;
+       if($pp->q7==$pq->answer)
+       {
+        ++$m;
+        
+        //echo $m;
+       }
+       }
+       if($s==8)
+       {
+        //echo $pp->q8;
+       // echo $pq->answer;
+       if($pp->q8==$pq->answer)
+       {
+        ++$m;
+        
+       // echo $m;
+       }
+       }
+       if($s==9)
+       {
+        //echo $pp->q9;
+        //echo $pq->answer;
+       if($pp->q9==$pq->answer)
+       {
+        ++$m;
+        
+        //echo $m;
+       }
+       }
+       if($s==10)
+       {
+           //echo $pp->q10;
+       // echo $pq->answer;
+       if($pp->q10==$pq->answer)
+       {
+        ++$m;
+     
+       // echo $m;
+       }
+       }
+       if($s==11)
+       {
+        //echo $pp->q11;
+        //echo $pq->answer;
+       if($pp->q11==$pq->answer)
+       {
+        ++$m;
+        
+        //echo $m;
+       }
+       }
+       if($s==12)
+       {
+         //echo $pp->q12;
+       // echo $pq->answer;
+       if($pp->q12==$pq->answer)
+       {
+        ++$m;
+       
+        //echo $m;
+       }
+       }
+       if($s==13)
+       {
+         //echo $pp->q13;
+       // echo $pq->answer;
+       if($pp->q13==$pq->answer)
+       {
+        ++$m;
+       
+       // echo $m;
+       }
+       }
+       if($s==14)
+       {
+         // echo $pp->q14;
+        //echo $pq->answer;
+       if($pp->q14==$pq->answer)
+       {
+        ++$m;
+      
+        //echo $m;
+       }
+       }
+       if($s==15)
+       {
+        //echo $pp->q15;
+        //echo $pq->answer;
+       if($pp->q15==$pq->answer)
+       {
+        ++$m;
+        
+        //echo $m;
+       }
+       }
+       
+       ++$s;
+     }
+     
+      $this->load->model('articlemodel');
+      $pp->result=$m;
+      $id=$pp->id;
+     unset($pp->id);
+     //echo "<pre>";
+     //print_r($pp);
+     $return=$this->articlemodel->result_insert($pp,$id); 
+     if($result && $return)
+     {
+
+      $this->session->set_flashdata('test','thanks for giving test your score is '.$m);
       $this->session->set_flashdata('test_class','alert-success');
     }
     else
@@ -350,6 +561,7 @@ class Login extends MY_Controller
       $pp=$this->fetchmodel->presult($k);
       echo "<pre>";
       //print_r($pp);
+      echo $pp->id;
       $s=1;
       for($j=1;$j<=$qn;$j++)
       {
@@ -359,30 +571,30 @@ class Login extends MY_Controller
       // echo $m;
       if($s==1)
       {
-        echo $pp->q1;
-        echo "q1";
-        echo $pq->answer;
+       // echo $pp->q1;
+       // echo "q1";
+       // echo $pq->answer;
 
-        echo "<br>";
+        //echo "<br>";
 
        if($pp->q1==$pq->answer)
        {
 
         ++$m;
         
-        echo $m;
+        //echo $m;
        
          }
        }
        if($s==2)
        {
-        echo $pp->q2;
-        echo $pq->answer;
+       // echo $pp->q2;
+       // echo $pq->answer;
        if($pp->q2==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+       // echo $m;
        }
        }
        if($s==3)
@@ -390,151 +602,203 @@ class Login extends MY_Controller
        if($pp->q3==$pq->answer)
        {
         ++$m;
-        echo $pp->q3;
-        echo $pq->answer;
-        echo $m;
+        //echo $pp->q3;
+       // echo $pq->answer;
+        //echo $m;
        }
        }
        if($s==4)
        {
-         echo $pp->q4;
-        echo $pq->answer;
+         //echo $pp->q4;
+        //echo $pq->answer;
        if($pp->q4==$pq->answer)
        {
         ++$m;
        
-        echo $m;
+        //echo $m;
        }
        }
        if($s==5)
        {
-        echo $pp->q5;
-        echo $pq->answer;
+       // echo $pp->q5;
+        //echo $pq->answer;
        if($pp->q5==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+        //echo $m;
        }
        }
        if($s==6)
        {
-        echo $pp->q6;
-        echo $pq->answer;
+       // echo $pp->q6;
+       // echo $pq->answer;
        if($pp->q6==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+       // echo $m;
        }
        }
        if($s==7)
        {
-        echo $pp->q7;
-        echo $pq->answer;
+        //echo $pp->q7;
+        //echo $pq->answer;
        if($pp->q7==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+        //echo $m;
        }
        }
        if($s==8)
        {
-        echo $pp->q8;
-        echo $pq->answer;
+        //echo $pp->q8;
+       // echo $pq->answer;
        if($pp->q8==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+       // echo $m;
        }
        }
        if($s==9)
        {
-        echo $pp->q9;
-        echo $pq->answer;
+        //echo $pp->q9;
+        //echo $pq->answer;
        if($pp->q9==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+        //echo $m;
        }
        }
        if($s==10)
        {
-           echo $pp->q10;
-        echo $pq->answer;
+           //echo $pp->q10;
+       // echo $pq->answer;
        if($pp->q10==$pq->answer)
        {
         ++$m;
      
-        echo $m;
+       // echo $m;
        }
        }
        if($s==11)
        {
-        echo $pp->q11;
-        echo $pq->answer;
+        //echo $pp->q11;
+        //echo $pq->answer;
        if($pp->q11==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+        //echo $m;
        }
        }
        if($s==12)
        {
-         echo $pp->q12;
-        echo $pq->answer;
+         //echo $pp->q12;
+       // echo $pq->answer;
        if($pp->q12==$pq->answer)
        {
         ++$m;
        
-        echo $m;
+        //echo $m;
        }
        }
        if($s==13)
        {
-         echo $pp->q13;
-        echo $pq->answer;
+         //echo $pp->q13;
+       // echo $pq->answer;
        if($pp->q13==$pq->answer)
        {
         ++$m;
        
-        echo $m;
+       // echo $m;
        }
        }
        if($s==14)
        {
-          echo $pp->q14;
-        echo $pq->answer;
+         // echo $pp->q14;
+        //echo $pq->answer;
        if($pp->q14==$pq->answer)
        {
         ++$m;
       
-        echo $m;
+        //echo $m;
        }
        }
        if($s==15)
        {
-        echo $pp->q15;
-        echo $pq->answer;
+        //echo $pp->q15;
+        //echo $pq->answer;
        if($pp->q15==$pq->answer)
        {
         ++$m;
         
-        echo $m;
+        //echo $m;
        }
        }
        
        ++$s;
      }
+     $this->load->model('articlemodel');
+     $pp->result=$m;
+     $id=$pp->id;
+     
+     //echo "<pre>";
+     //print_r($pp);
+      
+     if($this->articlemodel->result_insert($pp,$id))
+     {
+      echo "yes";
+     }
+     else
+     {
+      echo "no";
+     }
+
       echo "<br>".$k." ".$pp->name." - ".$m."<br>";
        ++$k;
        
     }
     
+  }
+  public function pulse()
+  {
+    $data=$this->input->post();
+    unset($data['submit']);
+    $this->load->model('loginmodel');
+    if($this->loginmodel->pulse($data))
+    {
+       $this->session->set_flashdata('feedback','pulse successfully updated');
+      $this->session->set_flashdata('feedback_class','alert-success');
+    }
+    else
+    {
+      $this->session->set_flashdata('feedback','pulse fail to update');
+      $this->session->set_flashdata('feedback_class','alert-danger');
+    }
+    return redirect('admin/jaga');
+  }
+  public function updateprofile()
+   {
+    $data=$this->input->post();
+     $user_id=$data['user_id'];
+    unset($data['submit']);
+    unset($data['user_id']);
+    $this->load->model('loginmodel');
+    if($this->loginmodel->updateprofile($data,$user_id))
+    {
+       $this->session->set_flashdata('feedback','profile successfully updated');
+      $this->session->set_flashdata('feedback_class','alert-success');
+    }
+    else
+    {
+      $this->session->set_flashdata('feedback','profile fail to update');
+      $this->session->set_flashdata('feedback_class','alert-danger');
+    }
+    return redirect('admin/jaga');
   }
 }
 

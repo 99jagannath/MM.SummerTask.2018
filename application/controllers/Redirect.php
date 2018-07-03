@@ -14,8 +14,6 @@ class Redirect extends MY_Controller
 	{
 		$this->load->model('fetchmodel');
 		$data['tests']=$this->fetchmodel->test();
-		//echo "<pre>";
-		//print_r($data);
        $this->load->view('admin/test',$data);
 	}
 	public function Department()
@@ -58,8 +56,9 @@ class Redirect extends MY_Controller
 	}
 	public function Student_Paules()
 	{
-		
-        $this->load->view('admin/Student_Paules');
+		$this->load->model('fetchmodel');
+		 $data['pulse']=$this->fetchmodel->pulse();
+        $this->load->view('admin/Student_Paules',$data);
 	}
 	public function Video()
 	{
@@ -94,8 +93,20 @@ class Redirect extends MY_Controller
           $this->load->view('admin/Academic_Calender');
 	}
 	public function User_Profile()
+	{ 
+		 $id= $this->session->userdata('user_id');
+		$this->load->model('articlemodel');
+		$data['profile']=$this->articlemodel->profile($id);
+		//print_r($data);
+        $this->load->view('admin/User_Profile',$data);
+	}
+	public function Update_Profile()
 	{
-         $this->load->view('admin/User_Profile');
+		 $id= $this->session->userdata('user_id');
+		$this->load->model('articlemodel');
+		$data['profile']=$this->articlemodel->profile($id);
+		//print_r($data);
+        $this->load->view('admin/UpdateProfile',$data);
 	}
 }
 

@@ -16,15 +16,19 @@
      </div>
    </div>
   <?php endif;?>
-                 <?php $j=1; ?>
+                 
                 <?php  foreach($comments as $comment):
-                     if($comment->answer==NULL):
+                    
+                    if($comment->answer==NULL):
                  ?>
                 	<?php echo form_open('admin/comment')?>
+                  
+                  <?php echo form_hidden('answering_user',$this->session->userdata('username')); ?>
                 	<?php  echo form_hidden('id',$comment->id) ?>
                 	<?php  echo form_hidden('article_id',$comment->article_id) ?>
                 	<?php  echo form_hidden('user_id',$comment->user_id) ?>
-                	<?php echo $j ?><br>
+                <span>title : </span><?php echo $comment->article_title ?><br>
+                <span>tag : </span><?php echo $comment->article_tag ?><br>	
                 	<?php echo $comment->comment ?><br>
                 	<?php echo form_input(['name'=>'answer','type'=>'text','placeholder'=>'enter your answer here','class'=>'form-control','value'=>set_value('answer')]) ?>
                 	<br>
@@ -35,7 +39,7 @@
                    <hr>
                 <?php
             endif;
-                   ++$j;
+                   
                  endforeach; ?>
             </div>
     </div>
