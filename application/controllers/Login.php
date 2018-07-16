@@ -44,6 +44,7 @@ class Login extends MY_Controller
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
+          $data['epics'] = $this->fetchmodel->visitcounter();
 		$this->load->view('public/mm',$data);
 
 	}
@@ -102,6 +103,10 @@ class Login extends MY_Controller
 	{
 		$this->load->model('fetchmodel');
       $article_id= $this->uri->segment(3);
+      $this->load->model('articlemodel');
+      $article=$this->fetchmodel->fetcharticle3($article_id);
+      $article->counter +=1;
+      $this->articlemodel->updatearticle($article_id,$article);
          $data['comments']=$this->fetchmodel->fetchallcomment($article_id);
        $data['squiggles']=$this->fetchmodel->fetchsquiggles();
          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
@@ -113,12 +118,20 @@ class Login extends MY_Controller
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
       $data['article']=$this->fetchmodel->fetcharticle3($article_id);
+      
+      
+      
+      
       $this->load->view('public/article',$data);
 	}
   public function comment()
   {
     $this->load->model('fetchmodel');
       $article_id= $this->uri->segment(3);
+      $this->load->model('articlemodel');
+      $article=$this->fetchmodel->fetcharticle3($article_id);
+      $article->counter +=1;
+      $this->articlemodel->updatearticle($article_id,$article);
        $data['comments']=$this->fetchmodel->fetchallcomment($article_id);
        $data['squiggles']=$this->fetchmodel->fetchsquiggles();
          $data['pow']=$this->fetchmodel->fetcharticle2('picofweek');
@@ -787,6 +800,7 @@ class Login extends MY_Controller
    {
     $data=$this->input->post();
      $user_id=$data['user_id'];
+     $data['password'] = md5($data['password']);
     unset($data['submit']);
     unset($data['user_id']);
     $this->load->model('loginmodel');
@@ -801,6 +815,23 @@ class Login extends MY_Controller
       $this->session->set_flashdata('feedback_class','alert-danger');
     }
     return redirect('admin/jaga');
+  }
+  public function event()
+  {
+    $post = $this->input->post();
+    unset($post['submit']);
+    $this->load->model('articlemodel');
+    if($this->articlemodel->events($post))
+    {
+       $this->session->set_flashdata('feedback','successfully event is added');
+      $this->session->set_flashdata('feedback_class','alert-success');
+    }
+    else
+    {
+      $this->session->set_flashdata('feedback','fail to add event');
+      $this->session->set_flashdata('feedback_class','alert-danger');
+    }
+    return redirect('Redirect/Events');
   }
 }
 

@@ -675,12 +675,33 @@
  			</aside>
  		
  	</div><!--end of middlepart-->
- 	<div class="row" style="width: 1300px;height: 330px; margin-left: 20px;" >
+ 	<div class="row" style="margin-left: 4%">
+ 		<h4>EDITOR PICS</h4>
+ 	</div>
+ 	<br><br>
+ 	<div class="row" style="margin-left:auto;margin-right: auto;" >
  		
+ 	<br>
+ 	 <?php
+
+         foreach($epics as $epic): ?>
+         	<article class="col-md-3 col-sm-3 mid grid">
+ 					<div class="image">
+ 						<a href="<?php echo base_url()?>login/article/<?php echo $epic->id ?>"><img src="<?php echo base_url('asests/images/')?><?php echo $epic->image ?>" style="max-width: 300px;"></a>
+ 					</div>
+ 					<div class="info">
+ 						<p class="tag thumbnail"><?php echo $epic->tag ?></p>
+ 						
+ 						
+ 					</div>
+ 				</article>
+
+       <?php  endforeach;
+
+
+ 	 ?>
  	</div>	
- 	<div class="row" style="width: 1300px;height: 330px; ;margin-left: 20px;" >
- 		
-</div>
+ 	<br>
    <div class="footer row" style="background-color: #2C3539; width: 100%;height: 400px;">
        	<div class="about col-md-3 col-sm-6" style="margin-top: 30px;">
 					<h5 style="color: blue;margin-left: 20px;">ABOUT</h5>

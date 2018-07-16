@@ -3,13 +3,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header" style="text-align: center;">UPDATE PROFILE</h1>
+                    <h4 style="color: red">* Please upload your frofile photo and password once again</h4>
                 </div>
                  <?php echo form_open('login/updateprofile')  ?>
                 <?php echo form_hidden('user_id',$this->session->userdata('user_id')); ?>
                 <label style="text-align: center;">User name</label><br>
                 <?php echo form_input(['name'=>'username','class'=>'form-control','placeholder'=>'Enter your subject','value'=>set_value('username',$profile->username)]) ?><br>
                 <label style="text-align: center;">password</label><br>
-                <?php echo form_input(['name'=>'password','class'=>'form-control','placeholder'=>'Enter your subject','value'=>set_value('subject',$profile->password)]) ?><br>
+                <?php echo form_input(['name'=>'password','class'=>'form-control','placeholder'=>'Enter your password']) ?><br>
                 <label style="text-align: center;">profile image</label><br>
                 <?php echo form_input(['name'=>'image','type'=>'file','class'=>'form-control','placeholder'=>'Enter your subject','value'=>set_value('subject',$profile->image)]) ?><br>
                 <label style="text-align: center;">Email</label><br>

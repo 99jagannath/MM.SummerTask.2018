@@ -86,7 +86,9 @@ class Redirect extends MY_Controller
 	}
 	public function Events()
 	{
-          $this->load->view('admin/Events');
+		$this->load->model('fetchmodel');
+		$data['events'] = $this->fetchmodel->event();
+          $this->load->view('admin/Events',$data);
 	}
 	public function Academic_Calender()
 	{

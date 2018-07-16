@@ -18,7 +18,7 @@
                              <label>Mobile no :</label>
                              <h3><strong><?php echo $profile->mobileno ?></strong></h3>
                              <label>status :</label>
-                             <h3><strong><?php echo $profile->status ?></strong></h3>
+                             <h3><strong><?php echo $profile->status ?> : ADMIN</strong></h3>
                     	</div>
                     </div>
                 </div>
