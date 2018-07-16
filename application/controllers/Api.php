@@ -1,6 +1,6 @@
 <?php
 
-class Api extends CI_COntroller
+class Api extends CI_Controller
 {
 	public function getarticlebyid($id)
 
