@@ -82,4 +82,4 @@ $route['api/test/participant/date/(:any)'] = 'api/getparticipant/$1';
 $route['api/question/date/(:any)'] = 'api/getquestionbydate/$1';
 $route['api/comment/submit'] = 'api/comment_submit';
 $route['api/signup'] = 'api/signup';
-
+$route['api/poll/vote'] = 'api/poll';

@@ -1,6 +1,6 @@
 <?php
 
-class Api extends CI_COntroller
+class Api extends CI_Controller
 {
 	public function getarticlebyid($id)
 
@@ -390,6 +390,49 @@ class Api extends CI_COntroller
         		echo json_encode($response);
         	}
         }
+	}
+	public function poll()
+	{
+		$data = array();
+		$response = array();
+		$option = $this->input->post('option');
+		$ip = $this->input->post('ip');
+		$date = $this->input->post('date');
+
+		if( isset($option))
+		{
+          $data['option'] = $option;
+		}
+		if( isset($ip))
+		{
+			$data['ip'] = $ip;
+		}
+		if( isset($date))
+		{
+			$data['date'] = $date;
+		}
+		if( ! isset($option) || ! isset($ip) || ! isset($date))
+		{
+			$response['success'] = false;
+			$response['error'] = 'option ,ip, date must required .';
+			echo json_encode($response);
+		}
+		else
+		{
+			$this->load->model('apimodel');
+			if($this->apimodel->poll($data))
+			{
+				$response['success'] = true;
+				$response['error'] = 'successfully voted .';
+				echo json_encode($response);
+			}
+			else
+			{
+				$response['success'] = false;
+				$response['error'] = 'fail to vote .';
+				echo json_encode($response);
+			}
+		}
 	}
 	
 }

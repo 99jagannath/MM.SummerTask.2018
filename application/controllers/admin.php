@@ -299,6 +299,69 @@ class Admin extends MY_Controller
       return redirect('login/test');
       }
     }
+    public function publish($article_id)
+  {
+        
+      $this->load->model('articlemodel');
+  
+      $data['articles']=$this->articlemodel->find_article($article_id);
+      $this->load->view('admin/publish',$data);
+
+  }
+  public function update_publish()
+  {
+    $post = $this->input->post();
+     if($post['tag']==NULL)
+     {
+        $this->session->set_flashdata('feedback','please add a tag before publishing publish');
+              $this->session->set_flashdata('feedback_class',"alert-danger");
+              return redirect('admin/jaga');
+     }
+     if($post['tag']=='carosel')
+     {
+      unset($post['article_id'],$post['submit']);
+      $this->load->model('articlemodel');
+      $query3 = $this->articlemodel->addarticle($post);
+      if($query3)
+      {
+        $this->session->set_flashdata('feedback','successfully published'); 
+              $this->session->set_flashdata('feedback_class','alert-success');
+      }
+      else
+      {
+                        $this->session->set_flashdata('feedback','fail to publish');
+              $this->session->set_flashdata('feedback_class',"alert-danger"); 
+      }
+      return redirect('admin/jaga');
+     }
+     $article_id = $post['article_id'];
+    unset($post['article_id'],$post['submit']);
+    $tag = $post['tag'];
+   $this->load->model('fetchmodel');
+   $previous=$this->fetchmodel->fetcharticle2($tag);
+   
+    $previous_id = $previous->id;
+   $previous->status = '0';
+   $post['status'] = '1';
+   $previous->tag = 'xyz;';
+   unset($previous->id);
+   
+  $this->load->model('articlemodel');
+$query1 = $this->articlemodel->updatearticle($article_id,$post);
+$query2 = $this->articlemodel->updatearticle($previous_id,$previous);
+
+ if($query1 && $query2)
+      {
+        $this->session->set_flashdata('feedback','successfully published'); 
+              $this->session->set_flashdata('feedback_class','alert-success');
+      }
+      else
+      {
+                        $this->session->set_flashdata('feedback','fail to publish');
+              $this->session->set_flashdata('feedback_class',"alert-danger"); 
+      }
+      return redirect('admin/jaga');
+  }
 	
 }
 

@@ -58,9 +58,10 @@ class Login extends MY_Controller
 		if($this->form_validation->run())
 		{
 			$username=$this->input->post('username');
-			$Password=$this->input->post('password');
+			$password1=$this->input->post('password');
+      $password = md5($password1);
 			$this->load->model('loginmodel');
-			$user=$this->loginmodel->login_validation($username,$Password);
+			$user=$this->loginmodel->login_validation($username,$password);
 
 			if($user)
              {
@@ -166,6 +167,7 @@ class Login extends MY_Controller
   public function resistration()
   {
     $user=$this->input->post();
+    $user['password'] = md5($user['password']);
     unset($user['submit'],$user['search']);
     $this->load->model('loginmodel');
     $reg=$this->loginmodel->resistration($user);

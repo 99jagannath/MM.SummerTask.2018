@@ -5,12 +5,12 @@
                     <h1 class="page-header" style="text-align: center;">Aticle Lists</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-                <table class="table">
+                <table class="table table-bordered table-responsive">
                     <thead>
                         <th>Sl No</th>
                         <th>Title</th>
                         <th>Tag</th>
-                        <th>Action</th>
+                        <th colspan="3">Action</th>
                     </thead>
                     <tbody>
                         <?php
@@ -20,12 +20,27 @@
                        
                         ?>
                         <tr>
+                          
                             <td><?=++$count ?></td>
                             <td><?=$article->title ?></td>
                             <td><?=$article->tag ?></td>
                             <td>
+                                <?php
+                                if($article->status==0)
+                                {
+                                 echo  anchor("admin/publish/{$article->id}","Publish",['class'=>'btn btn-success']);  
+                                }
+                                else
+                                {
+                                  echo '<button class="btn btn-info">published</button>'; 
+                                }
+
+                                ?>
+                            </td>
+                            <td>
                                <?= anchor("admin/edit_article/{$article->id}","Edit",['class'=>'btn btn-primary']); ?>
-                    
+                             </td>
+                             <td>    
                                 <?= anchor("admin/delete_article/{$article->id}","Delete",['class'=>'btn btn-danger']); ?>
                             </td>
                         </tr>
