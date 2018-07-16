@@ -56,6 +56,7 @@ class Admin extends MY_Controller
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
+          $data['epics'] = $this->fetchmodel->visitcounter();
     $this->load->view('public/student',$data);
   }
    public function admins()
@@ -100,6 +101,7 @@ class Admin extends MY_Controller
           $data['option2']=$this->fetchmodel->fetchpoll('option2');
           $data['option3']=$this->fetchmodel->fetchpoll('option3');
           $data['option4']=$this->fetchmodel->fetchpoll('option4');
+          $data['epics'] = $this->fetchmodel->visitcounter();
     $this->load->view('public/admins',$data);
   }
 
@@ -361,6 +363,22 @@ $query2 = $this->articlemodel->updatearticle($previous_id,$previous);
               $this->session->set_flashdata('feedback_class',"alert-danger"); 
       }
       return redirect('admin/jaga');
+  }
+  public function event($id)
+  {
+    $this->load->model('articlemodel');
+    
+    if($this->articlemodel->event_delete($id))
+      {
+        $this->session->set_flashdata('feedback','successfully removed'); 
+              $this->session->set_flashdata('feedback_class','alert-success');
+      }
+      else
+      {
+                        $this->session->set_flashdata('feedback','fail to remove');
+              $this->session->set_flashdata('feedback_class',"alert-danger"); 
+      }
+      return redirect('Redirect/Events');
   }
 	
 }

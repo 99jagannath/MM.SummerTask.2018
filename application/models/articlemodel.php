@@ -27,7 +27,7 @@
   		            ->get();
   		return $q->row();            
   	}
-  	public function updatearticle($article_id,array $post)
+  	public function updatearticle($article_id,$post)
   	{
   		return $this->db->update('article',$post,['id'=>$article_id]);
   	}
@@ -101,6 +101,25 @@
         
         return FALSE;
       } 
+    }
+    public function visit_counter($article_id)
+    {
+      $j = 0;
+      $q = $this->db->select('counter')
+                    ->where('id',$article_id)
+                    ->get('article');
+             if($q ==0)
+             {
+              return $this->db->update('answer',$data,['id'=>$id]);
+             }        
+    }
+    public function events($event)
+    {
+      return $this->db->insert('event',$event);
+    }
+    public function event_delete($id)
+    {
+      return $this->db->delete('event',['id'=>$id]);
     }
   }
 

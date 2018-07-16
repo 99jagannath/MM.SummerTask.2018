@@ -137,6 +137,21 @@ class Fetchmodel extends CI_Model
                         ->get('answer');
                  return $q->row();       
         }
+        public function visitcounter()
+        {
+            $q = $this->db->select('*')
+                          ->from('article')
+                          ->order_by('counter','desc')
+                          ->limit(4)
+                          ->get();
+                      return $q->result();     
+        }
+        public function event()
+        {
+            $q = $this->db->select('*')
+                          ->get('event');
+                   return $q->result();       
+        }
 	
 }
 ?>

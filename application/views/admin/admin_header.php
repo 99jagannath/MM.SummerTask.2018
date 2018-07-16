@@ -58,10 +58,10 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right" style="float: left;">
-               
+                <li></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                         <img src="<?php echo base_url('asests/images/')?><?php echo $this->session->userdata('pic') ?>" class="img-responsive" style="height: 30px; width: 30px; border-radius: 100% ">
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                          <li><a href="<?php echo base_url('redirect/User_Profile')?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
